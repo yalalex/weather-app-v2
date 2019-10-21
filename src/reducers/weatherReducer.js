@@ -40,20 +40,17 @@ export default (state = initialState, action) => {
     case SELECT_PLACE:
       return {
         ...state,
-        place: action.payload,
-        loading: false
+        place: action.payload
       };
     case GET_CURRENT_WEATHER:
       return {
         ...state,
         current: action.payload
-        // loading: false
       };
     case GET_TODAY_WEATHER:
       return {
         ...state,
         forecastToday: action.payload
-        // loading: false
       };
     case GET_FORECAST:
       return {
@@ -74,8 +71,7 @@ export default (state = initialState, action) => {
     case SET_ALERT:
       return {
         ...state,
-        alert: action.payload,
-        loading: false
+        alert: action.payload
       };
     case REMOVE_ALERT:
       return {
