@@ -76,7 +76,8 @@ export default (state = initialState, action) => {
     case REMOVE_ALERT:
       return {
         ...state,
-        alert: null
+        alert: null,
+        loading: false
       };
     case SET_LOADING:
       return {
