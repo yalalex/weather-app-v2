@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PlaceItem from './PlaceItem';
 import Spinner from '../layout/Spinner';
@@ -14,6 +15,10 @@ const Places = ({ weather: { places, loading } }) => {
         ))}
       </div>
     );
+};
+
+Places.propTypes = {
+  weather: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

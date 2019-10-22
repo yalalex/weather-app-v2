@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const NotFound = ({ weather: { lang } }) => {
@@ -13,6 +14,10 @@ const NotFound = ({ weather: { lang } }) => {
       <p className='lead'>Страница, которую вы ищете, не существует...</p>
     </Fragment>
   );
+};
+
+NotFound.propTypes = {
+  weather: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

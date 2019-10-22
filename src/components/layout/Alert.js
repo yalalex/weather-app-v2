@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Alert = ({ weather: { alert } }) => {
@@ -9,6 +10,10 @@ const Alert = ({ weather: { alert } }) => {
       </div>
     )
   );
+};
+
+Alert.propTypes = {
+  weather: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

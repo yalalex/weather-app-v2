@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PeriodItem from './PeriodItem';
 import DayItem from './DayItem';
@@ -165,6 +166,11 @@ const Forecast = ({
         </Fragment>
       </Router>
     );
+};
+
+Forecast.propTypes = {
+  weather: PropTypes.object.isRequired,
+  getWeather: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

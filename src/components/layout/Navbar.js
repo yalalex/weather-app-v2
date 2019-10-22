@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { switchLang, switchUnits } from '../../actions/weatherActions';
 
@@ -49,6 +50,12 @@ const Navbar = ({ weather: { units, lang }, switchLang, switchUnits }) => {
       </ul>
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  weather: PropTypes.object.isRequired,
+  switchLang: PropTypes.func.isRequired,
+  switchUnits: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

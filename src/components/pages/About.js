@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const About = ({ weather: { lang } }) => {
@@ -30,6 +31,10 @@ const About = ({ weather: { lang } }) => {
       </p>
     </Fragment>
   );
+};
+
+About.propTypes = {
+  weather: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

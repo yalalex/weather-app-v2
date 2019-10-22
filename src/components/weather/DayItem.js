@@ -61,7 +61,8 @@ const DayItem = ({ day, lang, units }) => {
 
 DayItem.propTypes = {
   day: PropTypes.object.isRequired,
-  lang: PropTypes.string.isRequired
+  lang: PropTypes.string.isRequired,
+  units: PropTypes.string.isRequired
 };
 
 export default DayItem;

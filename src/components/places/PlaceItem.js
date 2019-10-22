@@ -52,7 +52,9 @@ const PlaceItem = ({ weather: { units }, selectPlace, place }) => {
 };
 
 PlaceItem.propTypes = {
-  place: PropTypes.object.isRequired
+  place: PropTypes.object.isRequired,
+  weather: PropTypes.object.isRequired,
+  selectPlace: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
