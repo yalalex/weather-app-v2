@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/weather-app-redux/static/css/main.ae761d08.chunk.css",
+    "main.css": "/weather-app-redux/static/css/main.711ec815.chunk.css",
     "main.js": "/weather-app-redux/static/js/main.6401b205.chunk.js",
     "main.js.map": "/weather-app-redux/static/js/main.6401b205.chunk.js.map",
     "runtime~main.js": "/weather-app-redux/static/js/runtime~main.ca20a88f.js",
@@ -8,9 +8,9 @@
     "static/js/2.b106c89a.chunk.js": "/weather-app-redux/static/js/2.b106c89a.chunk.js",
     "static/js/2.b106c89a.chunk.js.map": "/weather-app-redux/static/js/2.b106c89a.chunk.js.map",
     "index.html": "/weather-app-redux/index.html",
-    "precache-manifest.05b3680cc841978047b533fc5472c649.js": "/weather-app-redux/precache-manifest.05b3680cc841978047b533fc5472c649.js",
+    "precache-manifest.fbdc6fa055dcda7cd7924f4847b0e31d.js": "/weather-app-redux/precache-manifest.fbdc6fa055dcda7cd7924f4847b0e31d.js",
     "service-worker.js": "/weather-app-redux/service-worker.js",
-    "static/css/main.ae761d08.chunk.css.map": "/weather-app-redux/static/css/main.ae761d08.chunk.css.map",
+    "static/css/main.711ec815.chunk.css.map": "/weather-app-redux/static/css/main.711ec815.chunk.css.map",
     "static/media/spinner.gif": "/weather-app-redux/static/media/spinner.706c7930.gif"
   }
 }
