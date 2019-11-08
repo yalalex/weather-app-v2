@@ -22,7 +22,7 @@ export const setAlert = msg => dispatch => {
 
 //Search places to get weather for
 export const searchPlaces = (text, lang) => async dispatch => {
-  setLoading();
+  dispatch({ type: SET_LOADING });
   request
     .get('https://wft-geo-db.p.rapidapi.com/v1/geo/cities')
     .query({ limit: '10' })
@@ -56,7 +56,7 @@ export const selectPlace = place => {
 
 //Get current weather and 48-hr/15-day forecast
 export const getWeather = (place, units) => async dispatch => {
-  setLoading();
+  dispatch({ type: SET_LOADING });
   const { city, latitude, longitude } = place;
   //Get current weather
   const respo = await axios.get(
@@ -128,9 +128,4 @@ export const switchUnits = units => {
 //Clear search
 export const clearSearch = () => {
   return { type: CLEAR_SEARCH };
-};
-
-//Set loading
-export const setLoading = () => {
-  return { type: SET_LOADING };
 };
