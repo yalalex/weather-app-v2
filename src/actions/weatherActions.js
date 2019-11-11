@@ -54,20 +54,21 @@ export const selectPlace = place => {
   return { type: SELECT_PLACE, payload: place };
 };
 
-//Get current weather and 48-hr/15-day forecast
+//Get current weather
 export const getWeather = (place, units) => async dispatch => {
   dispatch({ type: SET_LOADING });
   const { city, latitude, longitude } = place;
-  //Get current weather
-  const respo = await axios.get(
+  const res = await axios.get(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&APPID=${process.env.REACT_APP_OPENWEATHER_KEY}`
   );
-  const { timezone, dt, main, wind, weather, sys } = respo.data,
+  const { timezone, dt, main, wind, weather, sys } = res.data,
     { temp, pressure, humidity } = main,
     { sunrise, sunset } = sys;
+  const offset = new Date().getTimezoneOffset() * 60 + timezone;
   const current = {
     name: city,
-    timezone,
+    latitude,
+    longitude,
     dt,
     temp,
     wind: wind.speed,
@@ -77,15 +78,22 @@ export const getWeather = (place, units) => async dispatch => {
     sky: weather[0].description,
     icon: weather[0].icon,
     sunrise,
-    sunset
+    sunset,
+    offset
   };
   if (current.temp.toFixed() === '-0') current.temp = 0;
   dispatch({ type: GET_CURRENT_WEATHER, payload: current });
-  //Get forecast for 48 hours
-  const resp = await axios.get(
+};
+
+//Get forecast for 48 hours
+export const getHourly = (place, current, units) => async dispatch => {
+  dispatch({ type: SET_LOADING });
+  const { latitude, longitude } = place;
+  const { sunrise, sunset } = current;
+  const res = await axios.get(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=${units}&APPID=${process.env.REACT_APP_OPENWEATHER_KEY}`
   );
-  const today = resp.data.list.slice(0, 15);
+  const today = res.data.list.slice(0, 15);
   today.map(period => {
     if (period.main.temp.toFixed() === '-0') period.main.temp = 0;
     //Change icons according to local time in requested place
@@ -101,7 +109,12 @@ export const getWeather = (place, units) => async dispatch => {
     return period;
   });
   dispatch({ type: GET_TODAY_WEATHER, payload: today });
-  //Get forecast for 15 days
+};
+
+//Get forecast for 15 days
+export const getDaily = (place, units) => async dispatch => {
+  dispatch({ type: SET_LOADING });
+  const { latitude, longitude } = place;
   const un = units === 'metric' ? 'M' : 'I';
   const res = await axios.get(
     `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitude}&lon=${longitude}&units=${un}&key=${process.env.REACT_APP_WEATHERBIT_KEY}`

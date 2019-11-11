@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import Moment from 'react-moment';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const DayItem = ({ day, lang, units }) => {
+const DayItem = ({ weather: { lang, units }, day }) => {
   const { ts, max_temp, min_temp, wind_spd, pop, pres, rh, weather } = day;
   return (
     <Fragment>
@@ -61,8 +62,14 @@ const DayItem = ({ day, lang, units }) => {
 
 DayItem.propTypes = {
   day: PropTypes.object.isRequired,
-  lang: PropTypes.string.isRequired,
-  units: PropTypes.string.isRequired
+  weather: PropTypes.object.isRequired
 };
 
-export default DayItem;
+const mapStateToProps = state => ({
+  weather: state.weather
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(DayItem);

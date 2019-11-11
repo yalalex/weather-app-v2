@@ -1,16 +1,18 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import PeriodItem from './PeriodItem';
-import DayItem from './DayItem';
+import Daily from './Daily';
+import Hourly from './Hourly';
 import Spinner from '../layout/Spinner';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Moment from 'react-moment';
-import { getWeather } from '../../actions/weatherActions';
+import { getWeather, getHourly, getDaily } from '../../actions/weatherActions';
 
 const Forecast = ({
   weather: { current, forecastToday, forecast15, loading, units, lang, place },
-  getWeather
+  getWeather,
+  getHourly,
+  getDaily
 }) => {
   const [btn, setBtn] = useState('');
   const [target, setTarget] = useState('');
@@ -33,6 +35,8 @@ const Forecast = ({
 
   useEffect(() => {
     getWeather(place, units);
+    getHourly(place, current, units);
+    getDaily(place, units);
     //eslint-disable-next-line
   }, [units]);
 
@@ -55,20 +59,19 @@ const Forecast = ({
   };
 
   const {
-      name,
-      timezone,
-      dt,
-      weather,
-      sky,
-      wind,
-      temp,
-      pressure,
-      humidity,
-      icon
-    } = current,
-    offset = new Date().getTimezoneOffset() * 60 + timezone,
-    time = dt + offset;
-  if (loading || forecast15.length === 0) {
+    name,
+    dt,
+    weather,
+    sky,
+    wind,
+    temp,
+    pressure,
+    humidity,
+    icon,
+    offset
+  } = current;
+  const time = dt + offset;
+  if (loading || forecastToday.length === 0) {
     return <Spinner />;
   } else
     return (
@@ -138,29 +141,12 @@ const Forecast = ({
             <Route
               exact
               path='/weather-app-redux/current/:name'
-              render={props => (
-                <div className='listitems'>
-                  {forecastToday.map(period => (
-                    <PeriodItem
-                      key={period.dt}
-                      period={period}
-                      offset={offset}
-                      lang={lang}
-                    />
-                  ))}
-                </div>
-              )}
+              component={Hourly}
             />
             <Route
               exact
               path='/weather-app-redux/15-day/:name'
-              render={props => (
-                <div className='listitems'>
-                  {forecast15.map(day => (
-                    <DayItem key={day.ts} day={day} lang={lang} units={units} />
-                  ))}
-                </div>
-              )}
+              component={Daily}
             />
           </Switch>
         </Fragment>
@@ -179,5 +165,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getWeather }
+  { getWeather, getHourly, getDaily }
 )(Forecast);
