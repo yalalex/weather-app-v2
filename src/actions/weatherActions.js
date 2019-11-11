@@ -1,4 +1,3 @@
-import request from 'superagent';
 import axios from 'axios';
 import {
   SEARCH_PLACES,
@@ -23,30 +22,27 @@ export const setAlert = msg => dispatch => {
 //Search places to get weather for
 export const searchPlaces = (text, lang) => async dispatch => {
   dispatch({ type: SET_LOADING });
-  request
-    .get('https://wft-geo-db.p.rapidapi.com/v1/geo/cities')
-    .query({ limit: '10' })
-    .query({ namePrefix: text })
-    .query({ sort: '-population' })
-    .query({ languageCode: lang })
-    .set('x-rapidapi-host', 'wft-geo-db.p.rapidapi.com')
-    .set('x-rapidapi-key', process.env.REACT_APP_RAPIDAPI_KEY)
-    .set('Accept', 'application/json')
-    .then(res => {
-      if (res.body.data.length === 0) {
-        const alert =
-          lang === 'en'
-            ? 'No cities found. Check the spelling and try again'
-            : 'Ничего не найдено. Проверьте правильность написания и попробуйте снова';
-        dispatch({ type: SET_ALERT, payload: alert });
-        setTimeout(() => dispatch({ type: REMOVE_ALERT }), 5000);
-      } else {
-        dispatch({ type: SEARCH_PLACES, payload: res.body.data });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  const config = {
+    headers: {
+      'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
+      'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_KEY
+    }
+  };
+  const res = await axios.get(
+    `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=10&namePrefix=${text}&sort=-population&languageCode=${lang}`,
+    config
+  );
+  if (res.data.data.length === 0) {
+    const alert =
+      lang === 'en'
+        ? 'No cities found. Check the spelling and try again'
+        : 'Ничего не найдено. Проверьте правильность написания и попробуйте снова';
+    dispatch({ type: SET_ALERT, payload: alert });
+    setTimeout(() => dispatch({ type: REMOVE_ALERT }), 5000);
+  } else {
+    console.log(res.data);
+    dispatch({ type: SEARCH_PLACES, payload: res.data.data });
+  }
 };
 
 //Select place in search and get weather for it
