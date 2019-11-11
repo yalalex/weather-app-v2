@@ -162,6 +162,7 @@ img {
   justify-content: flex-start;
   text-align: center;
   margin: auto;
+  margin-bottom: 0.5rem;
   background: rgba(0, 0, 0, 0.1);
 }
 
