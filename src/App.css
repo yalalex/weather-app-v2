@@ -174,22 +174,35 @@ img {
 }
 
 .weatheritem {
+  padding: 0.2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: whitesmoke 1px;
+  border-bottom-style: dotted;
+  width: 100%;
+  margin: auto;
+  align-items: center;
+  height: 110px;
+}
+
+/* .weatheritem {
   background: rgba(0, 0, 0, 0.1);
   padding: 0.5rem;
   margin: 0.5rem;
   width: 187px;
-}
+} */
 
 .placeitem:hover {
   color: #333;
   background: rgba(0, 0, 0, 0.3);
 }
 
-.weatheritem:hover {
+/* .weatheritem:hover {
   color: #333;
   background: rgba(0, 0, 0, 0.3);
   cursor: default;
-}
+} */
 
 /* List */
 .list {
