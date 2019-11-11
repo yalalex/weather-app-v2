@@ -156,7 +156,9 @@ const Forecast = ({
 
 Forecast.propTypes = {
   weather: PropTypes.object.isRequired,
-  getWeather: PropTypes.func.isRequired
+  getWeather: PropTypes.func.isRequired,
+  getHourly: PropTypes.func.isRequired,
+  getDaily: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
