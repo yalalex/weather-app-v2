@@ -79,7 +79,7 @@ export const getWeather = (place, units) => async dispatch => {
   const resp = await axios.get(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=${units}&APPID=${process.env.REACT_APP_OPENWEATHER_KEY}`
   );
-  const today = resp.data.list.slice(0, 15);
+  const today = resp.data.list.slice(0, 16);
   today.map(period => {
     if (period.main.temp.toFixed() === '-0') period.main.temp = 0;
     //Change icons according to local time in requested place

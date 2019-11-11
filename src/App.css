@@ -79,7 +79,7 @@ img {
 
 /* Utilities */
 .container {
-  max-width: 1080px;
+  max-width: 1000px;
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
@@ -198,11 +198,10 @@ img {
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* .weatheritem:hover {
-  color: #333;
-  background: rgba(0, 0, 0, 0.3);
+.weatheritem:hover {
+  background: rgba(0, 0, 0, 0.1);
   cursor: default;
-} */
+}
 
 /* List */
 .list {
