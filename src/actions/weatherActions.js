@@ -63,8 +63,6 @@ export const getWeather = (place, units) => async dispatch => {
   const offset = new Date().getTimezoneOffset() * 60 + timezone;
   const current = {
     name: city,
-    latitude,
-    longitude,
     dt,
     temp,
     wind: wind.speed,
@@ -73,23 +71,15 @@ export const getWeather = (place, units) => async dispatch => {
     weather: weather[0].main,
     sky: weather[0].description,
     icon: weather[0].icon,
-    sunrise,
-    sunset,
     offset
   };
   if (current.temp.toFixed() === '-0') current.temp = 0;
   dispatch({ type: GET_CURRENT_WEATHER, payload: current });
-};
-
-//Get forecast for 48 hours
-export const getHourly = (place, current, units) => async dispatch => {
-  dispatch({ type: SET_LOADING });
-  const { latitude, longitude } = place;
-  const { sunrise, sunset } = current;
-  const res = await axios.get(
+  //Get forecast for 48 hours
+  const resp = await axios.get(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=${units}&APPID=${process.env.REACT_APP_OPENWEATHER_KEY}`
   );
-  const today = res.data.list.slice(0, 15);
+  const today = resp.data.list.slice(0, 15);
   today.map(period => {
     if (period.main.temp.toFixed() === '-0') period.main.temp = 0;
     //Change icons according to local time in requested place
@@ -105,17 +95,12 @@ export const getHourly = (place, current, units) => async dispatch => {
     return period;
   });
   dispatch({ type: GET_TODAY_WEATHER, payload: today });
-};
-
-//Get forecast for 15 days
-export const getDaily = (place, units) => async dispatch => {
-  dispatch({ type: SET_LOADING });
-  const { latitude, longitude } = place;
+  //Get forecast for 15 days
   const un = units === 'metric' ? 'M' : 'I';
-  const res = await axios.get(
+  const respo = await axios.get(
     `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitude}&lon=${longitude}&units=${un}&key=${process.env.REACT_APP_WEATHERBIT_KEY}`
   );
-  const forecast15 = res.data.data.slice(1, 16);
+  const forecast15 = respo.data.data.slice(1, 16);
   forecast15.map(async day => {
     if (day.max_temp.toFixed() === '-0') day.max_temp = 0;
     if (day.min_temp.toFixed() === '-0') day.min_temp = 0;

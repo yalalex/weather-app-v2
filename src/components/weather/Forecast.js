@@ -6,13 +6,11 @@ import Hourly from './Hourly';
 import Spinner from '../layout/Spinner';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Moment from 'react-moment';
-import { getWeather, getHourly, getDaily } from '../../actions/weatherActions';
+import { getWeather } from '../../actions/weatherActions';
 
 const Forecast = ({
   weather: { current, forecastToday, forecast15, loading, units, lang, place },
-  getWeather,
-  getHourly,
-  getDaily
+  getWeather
 }) => {
   const [btn, setBtn] = useState('');
   const [target, setTarget] = useState('');
@@ -35,8 +33,6 @@ const Forecast = ({
 
   useEffect(() => {
     getWeather(place, units);
-    getHourly(place, current, units);
-    getDaily(place, units);
     //eslint-disable-next-line
   }, [units]);
 
@@ -156,9 +152,7 @@ const Forecast = ({
 
 Forecast.propTypes = {
   weather: PropTypes.object.isRequired,
-  getWeather: PropTypes.func.isRequired,
-  getHourly: PropTypes.func.isRequired,
-  getDaily: PropTypes.func.isRequired
+  getWeather: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -167,5 +161,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getWeather, getHourly, getDaily }
+  { getWeather }
 )(Forecast);
