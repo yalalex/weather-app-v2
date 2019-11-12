@@ -9,7 +9,7 @@ const DayItem = ({ weather: { lang, units }, day }) => {
     <Fragment>
       <div className='weatheritem'>
         <h3>
-          <Moment locale={lang} unix format='dd Do'>
+          <Moment locale={lang} unix format='ddd Do'>
             {ts}
           </Moment>
         </h3>

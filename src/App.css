@@ -168,9 +168,9 @@ img {
 
 .placeitem {
   background: rgba(0, 0, 0, 0.1);
-  padding: auto;
+  padding: 0.5rem;
   margin: 0.5rem;
-  width: 238px;
+  width: 218px;
   height: 250px;
 }
 
@@ -184,7 +184,11 @@ img {
   width: 100%;
   margin: auto;
   align-items: center;
-  height: 110px;
+  height: 100px;
+}
+
+.weatheritem:last-child {
+  border-bottom-style: none;
 }
 
 /* .weatheritem {
@@ -495,7 +499,7 @@ table th {
 }
 
 /* Mobile Styles */
-@media (max-width: 640px) {
+@media (max-width: 600px) {
   .hide-sm {
     display: none;
   }
@@ -554,7 +558,7 @@ table th {
     width: 100%;
     margin: auto;
     align-items: center;
-    height: 110px;
+    height: 100px;
   }
 
   .placeitem {
