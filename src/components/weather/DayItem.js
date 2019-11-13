@@ -3,14 +3,16 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const DayItem = ({ weather: { lang, units }, day }) => {
-  const { ts, max_temp, min_temp, wind_spd, pop, pres, rh, weather } = day;
+const DayItem = ({ weather: { current, lang, units }, day }) => {
+  const { ts, max_temp, min_temp, wind_spd, pop, pres, rh, weather } = day,
+    { offset } = current;
+  const time = ts + offset;  
   return (
     <Fragment>
       <div className='weatheritem'>
         <h3>
           <Moment locale={lang} unix format='ddd Do'>
-            {ts}
+            {time}
           </Moment>
         </h3>
         <img
