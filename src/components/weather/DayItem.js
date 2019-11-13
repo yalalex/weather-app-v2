@@ -1,24 +1,24 @@
-import React, { Fragment } from 'react';
-import Moment from 'react-moment';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Fragment } from "react";
+import Moment from "react-moment";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 const DayItem = ({ weather: { current, lang, units }, day }) => {
   const { ts, max_temp, min_temp, wind_spd, pop, pres, rh, weather } = day,
     { offset } = current;
-  const time = ts + offset;  
+  const time = ts + offset;
   return (
     <Fragment>
       <div className='weatheritem'>
         <h3>
-          <Moment locale={lang} unix format='ddd Do'>
+          <Moment locale={lang} unix format='dd Do'>
             {time}
           </Moment>
         </h3>
         <img
           alt={weather.description}
           src={`https://www.weatherbit.io/static/img/icons/${weather.icon}.png`}
-          style={{ width: '70px' }}
+          style={{ width: "70px" }}
         />
         <h2>
           {max_temp.toFixed()}°/{min_temp.toFixed()}°
@@ -41,18 +41,18 @@ const DayItem = ({ weather: { current, lang, units }, day }) => {
               <li>
                 <i className='fas fa-wind' />
                 {wind_spd.toFixed(1)}
-                {lang === 'en'
-                  ? units === 'metric'
-                    ? 'm/s'
-                    : 'mph'
-                  : units === 'metric'
-                  ? 'м/c'
-                  : 'м/ч'}
+                {lang === "en"
+                  ? units === "metric"
+                    ? "m/s"
+                    : "mph"
+                  : units === "metric"
+                  ? "м/c"
+                  : "м/ч"}
               </li>
               <li>
                 <i className='fas fa-square' />
                 {pres.toFixed()}
-                {lang === 'en' ? 'mb' : 'мб'}
+                {lang === "en" ? "mb" : "мб"}
               </li>
             </ul>
           </div>
@@ -71,7 +71,4 @@ const mapStateToProps = state => ({
   weather: state.weather
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(DayItem);
+export default connect(mapStateToProps, null)(DayItem);
