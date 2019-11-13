@@ -1,7 +1,7 @@
-import React from "react";
-import Moment from "react-moment";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React from 'react';
+import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const PeriodItem = ({ weather: { current, lang }, period }) => {
   const { dt, main, weather } = period,
@@ -19,7 +19,7 @@ const PeriodItem = ({ weather: { current, lang }, period }) => {
         <img
           alt={weather[0].description}
           src={`https://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
-          style={{ width: "100px" }}
+          style={{ width: '100px' }}
         />
       </div>
       <div className='all-center'>
