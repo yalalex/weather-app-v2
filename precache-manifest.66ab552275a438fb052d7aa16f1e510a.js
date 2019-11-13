@@ -1,18 +1,18 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7b9ef6b43285cb3951a233d33272bc37",
+    "revision": "212dd140c7ea9a1240734ed9e6bec9fe",
     "url": "/weather-app-redux/index.html"
   },
   {
-    "revision": "6be7d4c3376fcb7d6249",
-    "url": "/weather-app-redux/static/css/main.4b36f956.chunk.css"
+    "revision": "977f6e3387aaaddb5753",
+    "url": "/weather-app-redux/static/css/main.7a713b0f.chunk.css"
   },
   {
     "revision": "af28fe06b002b36fcc80",
     "url": "/weather-app-redux/static/js/2.0fe84bd4.chunk.js"
   },
   {
-    "revision": "6be7d4c3376fcb7d6249",
+    "revision": "977f6e3387aaaddb5753",
     "url": "/weather-app-redux/static/js/main.17909677.chunk.js"
   },
   {
