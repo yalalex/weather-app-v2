@@ -15,7 +15,7 @@ import {
 
 //Set alert
 export const setAlert = msg => dispatch => {
-  dispatch({ type: SET_ALERT, payload: { msg } });
+  dispatch({ type: SET_ALERT, payload: msg });
   setTimeout(() => dispatch({ type: REMOVE_ALERT }), 3000);
 };
 
