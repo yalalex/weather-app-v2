@@ -10,20 +10,26 @@ const DayItem = ({ weather: { current, lang, units }, day }) => {
   return (
     <Fragment>
       <div className='weatheritem'>
-        <h3>
-          <Moment locale={lang} unix format='dd Do'>
-            {time}
-          </Moment>
-        </h3>
-        <img
-          alt={weather.description}
-          src={`https://www.weatherbit.io/static/img/icons/${weather.icon}.png`}
-          style={{ width: "70px" }}
-        />
-        <h2>
-          {max_temp.toFixed()}°/{min_temp.toFixed()}°
-        </h2>
-        <div className='conditions'>
+        <div className='all-center'>
+          <h3>
+            <Moment locale={lang} unix format='dd Do'>
+              {time}
+            </Moment>
+          </h3>
+        </div>
+        <div className='all-center'>
+          <img
+            alt={weather.description}
+            src={`https://www.weatherbit.io/static/img/icons/${weather.icon}.png`}
+            style={{ width: "70px" }}
+          />
+        </div>
+        <div className='all-center'>
+          <h2>
+            {max_temp.toFixed()}°/{min_temp.toFixed()}°
+          </h2>
+        </div>
+        <div className='conditions all-center'>
           <div>
             <ul>
               <li>
