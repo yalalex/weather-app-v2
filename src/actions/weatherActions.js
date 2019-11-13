@@ -38,7 +38,7 @@ export const searchPlaces = (text, lang) => async dispatch => {
         ? 'No cities found. Check the spelling and try again'
         : 'Ничего не найдено. Проверьте правильность написания и попробуйте снова';
     dispatch({ type: SET_ALERT, payload: alert });
-    setTimeout(() => dispatch({ type: REMOVE_ALERT }), 5000);
+    setTimeout(() => dispatch({ type: REMOVE_ALERT }), 3000);
   } else {
     console.log(res.data);
     dispatch({ type: SEARCH_PLACES, payload: res.data.data });
