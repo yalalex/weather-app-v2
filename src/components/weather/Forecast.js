@@ -159,7 +159,4 @@ const mapStateToProps = state => ({
   weather: state.weather
 });
 
-export default connect(
-  mapStateToProps,
-  { getWeather }
-)(Forecast);
+export default connect(mapStateToProps, { getWeather })(Forecast);
