@@ -40,7 +40,6 @@ export const searchPlaces = (text, lang) => async dispatch => {
     dispatch({ type: SET_ALERT, payload: alert });
     setTimeout(() => dispatch({ type: REMOVE_ALERT }), 3000);
   } else {
-    console.log(res.data);
     dispatch({ type: SEARCH_PLACES, payload: res.data.data });
   }
 };
@@ -80,7 +79,7 @@ export const getWeather = (place, units) => async dispatch => {
     `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=${units}&APPID=${process.env.REACT_APP_OPENWEATHER_KEY}`
   );
   const today = resp.data.list.slice(0, 16);
-  today.map(period => {
+  const today48 = today.map(period => {
     if (period.main.temp.toFixed() === '-0') period.main.temp = 0;
     //Change icons according to local time in requested place
     if (sunrise + 86400 < period.dt && period.dt < sunset + 86400) {
@@ -94,14 +93,15 @@ export const getWeather = (place, units) => async dispatch => {
     }
     return period;
   });
-  dispatch({ type: GET_TODAY_WEATHER, payload: today });
+
+  dispatch({ type: GET_TODAY_WEATHER, payload: today48 });
   //Get forecast for 15 days
   const un = units === 'metric' ? 'M' : 'I';
   const respo = await axios.get(
     `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitude}&lon=${longitude}&units=${un}&key=${process.env.REACT_APP_WEATHERBIT_KEY}`
   );
-  const forecast15 = respo.data.data.slice(1, 16);
-  forecast15.map(async day => {
+  const forecast = respo.data.data.slice(1, 16);
+  const forecast15 = forecast.map(day => {
     if (day.max_temp.toFixed() === '-0') day.max_temp = 0;
     if (day.min_temp.toFixed() === '-0') day.min_temp = 0;
     return day;
